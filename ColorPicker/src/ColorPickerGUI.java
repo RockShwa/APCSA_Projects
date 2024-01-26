@@ -47,14 +47,14 @@ public class ColorPickerGUI
 
 		// Initialize each of the color channel controller sprites
 		// TODO: See instructions on board
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
 		// Initialize the sample swatch sprite
 		// TODO: See instructions on board
 
 		// Add the color channels and sample swatch to the stage
 		// TODO: See instructions on board
-=======
+//=======
 		myRed = new Controller(0, 0, unit, RGBA.RED);
 		myGreen = new Controller(unit, 0, unit, RGBA.GREEN);
 		myBlue = new Controller(0, unit, unit, RGBA.BLUE);
@@ -71,7 +71,7 @@ public class ColorPickerGUI
 		myStage.add(myBlue);
 		myStage.add(myAlpha);
 		myStage.add(mySample);
->>>>>>> ed0fb2301409bb8fd2c4b0893cc8d418c5bba4c2
+////ed0fb2301409bb8fd2c4b0893cc8d418c5bba4c2
 
 		// Make the stage visible and start the animation
 		myStage.openWindow();

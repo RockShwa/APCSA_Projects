@@ -53,7 +53,19 @@ public enum RGBA
 	 */
 	public String getName()
 	{
-		return "???";	// TODO: Replace this with the appropriate implementation.
+		if (this == RGBA.RED)
+		{
+			return "Red";
+		}
+		else if (this == RGBA.GREEN)
+		{
+			return "Green";
+		}
+		else if (this == RGBA.BLUE)
+		{
+			return "Blue";
+		}
+		return "Alpha";
 	}
 
 	/** Standard method for retrieving a String representation of

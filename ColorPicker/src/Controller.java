@@ -85,7 +85,13 @@ public class Controller extends Sprite
 	 */
 	private boolean isOverLeftButton(int x, int y)
 	{
-		return false;	// TODO: Replace this with the appropriate implementation.
+		int radius = myButtonSize/2;
+		double distance = Math.sqrt(Math.pow((myLeftButton.y - y), 2) + Math.pow((myLeftButton.x - x), 2));
+		if (distance <= radius)
+		{
+			return true;
+		}
+		return false;	
 	}
 
 	/** Determines if a given point (x, y) is located over the "left"
@@ -113,7 +119,13 @@ public class Controller extends Sprite
 	 */
 	private boolean isOverRightButton(int x, int y)
 	{
-		return false;	// TODO: Replace this with the appropriate implementation.
+		int radius = myButtonSize/2;
+		double distance = Math.sqrt(Math.pow((myRightButton.y - y), 2) + Math.pow((myRightButton.x - x), 2));
+		if (distance <= radius)
+		{
+			return true;
+		}
+		return false;	
 	}
 
 	/** Event handler that responds to the pressing down of the mouse button.
@@ -143,7 +155,14 @@ public class Controller extends Sprite
 	 */
 	public void mousePressed(int x, int y)
 	{
-		// TODO: Replace this with the appropriate implementation.
+		if (isOverLeftButton(x, y))
+		{
+			myLeftIsPressed = true;
+		}
+		if (isOverRightButton(x, y))
+		{
+			myRightIsPressed = true;
+		}
 	}
 
 	/** Event handler that responds to the releasing of the mouse button.
@@ -168,7 +187,8 @@ public class Controller extends Sprite
 	 */
 	public void mouseReleased(int x, int y)
 	{
-		// TODO: Replace this with the appropriate implementation.
+		myLeftIsPressed = false;
+		myRightIsPressed = false;
 	}
 
 	/** Every frame of animation, this modifier method is invoked so that this
@@ -195,7 +215,14 @@ public class Controller extends Sprite
 	 */
 	public void act()
 	{
-		// TODO: Replace this with the appropriate implementation.
+		if((myLeftIsPressed == true) && (myShade - STEP) >= 0)
+		{
+			myShade -= STEP;
+		}
+		if((myRightIsPressed == true) && (myShade + STEP) <= 255)
+		{
+			myShade += STEP;
+		}
 	}
 
 	/** Accessor method for retrieving the magnitude (0 - 255) of this
@@ -207,7 +234,7 @@ public class Controller extends Sprite
 	 */
 	public int getShade()
 	{
-		return 127;	// TODO: Replace this with the appropriate implementation.
+		return myShade;	
 	}
 
 	/** Accessor method for retrieving the Color object associated with the
@@ -237,7 +264,30 @@ public class Controller extends Sprite
 	 */
 	public Color getColor()
 	{
-		return new Color(127, 127, 127, 127);	// TODO: Replace this with the appropriate implementation.
+		int rVal = 0;
+		int gVal = 0;
+		int bVal = 0;
+		int aVal = 255;
+		if (myHue == RGBA.RED)
+		{
+			rVal = myShade;
+		}
+		else if (myHue == RGBA.GREEN)
+		{
+			gVal = myShade;
+		}
+		else if (myHue == RGBA.BLUE)
+		{
+			bVal = myShade;
+		}
+		else 
+		{
+			aVal = myShade;
+			rVal = 255;
+			gVal = 255;
+			bVal = 255;
+		}
+		return new Color(rVal, gVal, bVal, aVal);	
 	}
 
 	/** Every frame of animation, this accessor method is invoked so that the

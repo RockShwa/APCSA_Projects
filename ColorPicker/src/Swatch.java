@@ -75,7 +75,11 @@ public class Swatch extends Sprite
 	 */
 	public Color getColor()
 	{
-		return new Color(0, 0, 0, 255);	// TODO: Replace this with the appropriate implementation.
+		int rVal = myRed.getShade();
+		int gVal = myGreen.getShade();
+		int bVal = myBlue.getShade();
+		int aVal = myAlpha.getShade();
+		return new Color(rVal, gVal, bVal, aVal);	
 	}
 
 	/** Given a decimal value between 0 and 15, inclusive, returns the
@@ -112,7 +116,31 @@ public class Swatch extends Sprite
 	 */
 	private static String decimalToHex(int decimal)
 	{
-		return "?";	// TODO: Replace this with the appropriate implementation.
+		if (decimal < 10)
+		{
+			return "" + decimal;
+		}
+		else if (decimal == 10)
+		{
+			return "A";
+		}
+		else if (decimal == 11)
+		{
+			return "B";
+		}
+		else if (decimal == 12)
+		{
+			return "C";
+		}
+		else if (decimal == 13)
+		{
+			return "D";
+		}
+		else if (decimal == 14)
+		{
+			return "E";
+		}
+		return "F";	// TODO: Replace this with the appropriate implementation.
 	}
 
 	/** Accessor method for retrieving a string representing the 6-digit
@@ -156,7 +184,31 @@ public class Swatch extends Sprite
 	 */
 	public String getHexString()
 	{
-		return "??????";	// TODO: Replace this with the appropriate implementation.
+		String rrggbb = "";
+		int v0;
+		int v1;
+		String hex0;
+		String hex1;
+		v0 = myRed.getShade() / 16;
+		v1 = myRed.getShade() % 16;
+		hex0 = decimalToHex(v0);
+		hex1 = decimalToHex(v1);
+		rrggbb = rrggbb + hex0 + hex1;
+		
+		v0 = myGreen.getShade() / 16;
+		v1 = myGreen.getShade() % 16;
+		hex0 = decimalToHex(v0);
+		hex1 = decimalToHex(v1);
+		rrggbb = rrggbb + hex0 + hex1;
+		
+		v0 = myBlue.getShade() / 16;
+		v1 = myBlue.getShade() % 16;
+		hex0 = decimalToHex(v0);
+		hex1 = decimalToHex(v1);
+		rrggbb = rrggbb + hex0 + hex1;
+		
+		
+		return rrggbb;	// TODO: Replace this with the appropriate implementation.
 	}
 
 	/** Draws all of the elements of this swatch (color sample and
