@@ -15,3 +15,7 @@ How to Make a Bin Folder:
     - compile with javac -d bin -cp libs src/*.java
     - classpath tells compiler where classes are so it can compile
     - run (on windows) with java -cp "bin;libs" ColorPicker (NOT bin folder, general folder)
+
+# How to Push at School Computer
+- git remote set-url origin https://RockShwa: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@github.com/RockShwa/APCSA_Projects
+- git push origin main
