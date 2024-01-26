@@ -10,3 +10,8 @@ How to Make a Bin Folder:
 - Make file .gitignore
     - write in file: /bin/*
 
+# How to Get ClassPath to work with ColorPicker into VS Code
+    - Unzip file & drag it into a folder
+    - compile with javac -d bin -cp libs src/*.java
+    - classpath tells compiler where classes are so it can compile
+    - run (on windows) with java -cp "bin;libs" ColorPicker (NOT bin folder, general folder)
