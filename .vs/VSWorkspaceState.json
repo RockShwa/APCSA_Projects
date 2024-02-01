@@ -1,10 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ColorPicker",
-    "\\ColorPicker\\libs",
-    "\\LinearEquation",
-    "\\LinearEquation\\src"
+    "\\ColorPicker\\src",
+    "\\Hero"
   ],
+  "SelectedNode": "\\Hero\\src",
   "PreviewInSolutionExplorer": false
 }
