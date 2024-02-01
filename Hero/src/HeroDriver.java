@@ -9,7 +9,8 @@ public class HeroDriver {
 		((Warrior) hero2).attack(); // cast Hero to be a Warrior at compile time
 
 		// you can only extend from one class (each class can only have one parent)
-		// static: you don't have to make an object to use the static method, static variables are class specific, so if you change a static variable, it changes it for all instances of that class
+		/* static: you don't have to make an object to use the static method, static variables are class specific, so if you change a 
+		* static variable, it changes it for all instances of that class */
 
 		System.out.println(Warrior.getHP());
 		Warrior hero3 = new Warrior();
