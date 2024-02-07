@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ColorPicker\\src",
-    "\\Hero"
+    "\\Currency",
+    "\\Currency\\src"
   ],
-  "SelectedNode": "\\Hero\\src",
+  "SelectedNode": "\\Currency\\src\\Quarter.java",
   "PreviewInSolutionExplorer": false
 }
