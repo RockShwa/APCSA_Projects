@@ -1,9 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Currency",
-    "\\Currency\\src"
+    "\\BouncingBalls",
+    "\\BouncingBalls\\src",
+    "\\ColorPicker",
+    "\\ColorPicker\\bin",
+    "\\Textbook\\src"
   ],
-  "SelectedNode": "\\Currency\\src\\Quarter.java",
+  "SelectedNode": "\\BouncingBalls\\src\\BouncingBallsGUI.java",
   "PreviewInSolutionExplorer": false
 }
