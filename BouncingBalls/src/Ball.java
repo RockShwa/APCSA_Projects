@@ -1,6 +1,4 @@
 
-
-
 import mickel.anim.Sprite;
 import mickel.io.Key;
 
@@ -40,7 +38,12 @@ public class Ball extends Sprite
 	 *                Assign myColor a Color value of RED.
 	 */
 	public Ball() {
-		// TODO: Replace this with the appropriate implementation.
+		mySize = 100;
+		myPosX = mySize/2 + 1;
+		myPosY = mySize/2 + 1;
+		myDirX = 2;
+		myDirY = 1;
+		myColor = Color.RED;
 	}
 
 	/** Constructs a small, green Ball that is initially centered
@@ -58,7 +61,12 @@ public class Ball extends Sprite
 	 * @param height	Height of the stage
 	 */
 	public Ball(int width, int height) {
-		// TODO: Replace this with the appropriate implementation.
+		mySize = 25;
+		myPosX = width/2;
+		myPosY = height/2;
+		myDirX = -2;
+		myDirY = 5;
+		myColor = Color.GREEN;
 	}
 
 	/** Constructs a Ball that initially has the specified
@@ -77,7 +85,12 @@ public class Ball extends Sprite
 	 * @param c		The Color of this Ball
 	 */
 	public Ball(int x, int y, int size, Color c) {
-		// TODO: Replace this with the appropriate implementation.
+		mySize = size;
+		myPosX = x;
+		myPosY = y;
+		myDirX = 3;
+		myDirY = 3; 
+		myColor = c;
 	}
 
 
@@ -113,9 +126,26 @@ public class Ball extends Sprite
 	 *                  h and this Ball is moving down, negate the
 	 *                  value of myDirY.
 	 */
-	public void act()
+	public void act() // POSSIBLE QUIZ METHOD
 	{
-		// TODO: Replace this with the appropriate implementation.
+		myPosX += myDirX;
+		myPosY += myDirY;
+		
+		int w = this.getStage().getWidth();
+		int h = this.getStage().getHeight();
+
+		if (myPosX < 0 && myDirX < 0) {
+			myDirX *= -1;
+		}
+		if (myPosX + mySize > w && myDirX > 0) {
+			myDirX *= -1;
+		}
+		if (myPosY < 0 && myDirY < 0) {
+			myDirY *= -1;
+		}
+		if (myPosY + mySize > h && myDirY > 0) {
+			myDirY *= -1;
+		}
 	}
 
 
@@ -134,7 +164,8 @@ public class Ball extends Sprite
 	 */
 	public void draw(Graphics2D g)
 	{
-		// TODO: Replace this with the appropriate implementation.
+		g.setColor(myColor);
+		g.fillOval(myPosX, myPosY, mySize, mySize);
 	}
 
 
@@ -150,7 +181,7 @@ public class Ball extends Sprite
 	 */
 	public Shape getShape()
 	{
-		return null;	// TODO: Replace this with the appropriate implementation.
+		return new Ellipse2D.Double(myPosX, myPosY, mySize, mySize);
 	}
 
 

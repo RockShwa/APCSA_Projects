@@ -2,7 +2,7 @@
 import mickel.anim.Stage;
 import mickel.image.ImageFile;
 
-import java.awt.Color;
+import java.awt.*;
 
 
 /** The primary GUI window of the BouncingBalls application.
@@ -12,6 +12,7 @@ public class BouncingBallsGUI
 	// FIELDS
 	// ------------------------------------------------------------
 	private Stage myStage;			// The base window for the app.
+	private Dimension myScreenSize;
 
 
 	// CONSTRUCTORS
@@ -45,7 +46,18 @@ public class BouncingBallsGUI
 	 */
 	public BouncingBallsGUI()
 	{
-		// TODO: Replace this with the appropriate implementation.
+		int stageWidth = 400;
+		int stageHeight = 400;
+		myStage = new Stage("Bouncing Balls", stageWidth, stageHeight);
+		myStage.setBackground(new Color(61, 124, 168, 100));
+		ImageFile img = new ImageFile("Duke.png");
+		myStage.setBackground(img);
+		// centers screen regardless of dimensions of computer
+		myScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		myStage.setLocation(myScreenSize.width/2 - stageWidth/2, myScreenSize.height/2 - stageWidth/2);
+		this.addSprites();
+		myStage.openWindow();
+		myStage.start();
 	}
 
 
@@ -70,6 +82,11 @@ public class BouncingBallsGUI
 	 */
 	private void addSprites()
 	{
-		// TODO: Replace this with the appropriate implementation.
+		Ball b1 = new Ball();
+		Ball b2 = new Ball(400, 400);
+		Ball b3 = new Ball(100, 100, 40, Color.BLUE);
+		myStage.add(b1);
+		myStage.add(b2);
+		myStage.add(b3);
 	}
 }
