@@ -2,11 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\BouncingBalls",
-    "\\BouncingBalls\\src",
-    "\\ColorPicker",
-    "\\ColorPicker\\bin",
-    "\\Textbook\\src"
+    "\\ColorPicker\\bin"
   ],
-  "SelectedNode": "\\BouncingBalls\\src\\BouncingBallsGUI.java",
+  "SelectedNode": "\\BouncingBalls\\src",
   "PreviewInSolutionExplorer": false
 }

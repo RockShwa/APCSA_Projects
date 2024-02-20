@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 
 import java.awt.geom.Ellipse2D;
+import java.util.*;
 
 /** Represents a Ball that dynamically bounces around the interior
  *  of a rectangular Stage.
@@ -189,16 +190,60 @@ public class Ball extends Sprite
 	 * to keyboard events and mouse events. You may wish to experiment
 	 * with these to add additional "user controls" for Ball objects.
 	 */
-	public void keyPressed (Key k) { /* TODO: Insert code */ }
-	public void keyReleased(Key k) { /* TODO: Insert code */ }
-	public void keyTyped   (Key k) { /* TODO: Insert code */  }
+	 // user types any key
+	public void keyPressed (Key k) {
+		if(!k.equals(Key.R)) {
+			mySize += 10;
+		}
+	}
+	public void keyReleased(Key k) { 
+		if(!k.equals(Key.R)) {
+			mySize -= 10;
+		}
+	}
 
-	public void mousePressed (int x, int y) { /* TODO: Insert code */ }
-	public void mouseReleased(int x, int y) { /* TODO: Insert code */ }
-	public void mouseClicked (int x, int y) { /* TODO: Insert code */ }
-	public void mouseMoved   (int x, int y) { /* TODO: Insert code */ }
-	public void mouseDragged (int x, int y) { /* TODO: Insert code */ }
-	public void mouseEntered (int x, int y) { /* TODO: Insert code */ }
-	public void mouseExited  (int x, int y) { /* TODO: Insert code */ }
+	// user types a character (so everything except F1 or Alt, etc.)
+	public void keyTyped (Key k) {
+		if (k.equals(Key.R)) {
+			myColor = new Color(100, 0, 100, 100);
+		}
+	}
+
+	public void mousePressed (int x, int y) { 
+		// change speed
+		myDirX += 5;
+	}
+	public void mouseReleased(int x, int y) { 
+		myDirY += 5;
+	}
+	// ensures that the position change does not go past the stage height
+	public void mouseClicked (int x, int y) { 
+		Ball ball = new Ball(x, y, 100, Color.BLUE);
+		this.getStage().add(ball);
+	}
+	public void mouseMoved (int x, int y) { 
+		if (myPosY + mySize + 25 < this.getStage().getHeight()) {
+			myPosY += 25;
+		}
+	}
+	// ensures that the position change does not go past the stage width
+	public void mouseDragged (int x, int y) { 
+		if (myPosX + mySize + 25 < this.getStage().getWidth()) {
+			myPosX += 25;
+		}
+	}
+	// adds new ball
+	public void mouseEntered (int x, int y) { 
+		int r = (int) (Math.random() * 256);
+		int g = (int) (Math.random() * 256);
+		int b = (int) (Math.random() * 256);
+		myColor = new Color(r, g, b);
+	}
+	public void mouseExited  (int x, int y) { 
+		int r = (int) (Math.random() * 256);
+		int g = (int) (Math.random() * 256);
+		int b = (int) (Math.random() * 256);
+		myColor = new Color(r, g, b);
+	}
 
 }
