@@ -1,7 +1,7 @@
 import mickel.anim.Sprite;
 
 // TODO: Add to the statement below to indicate that a MazeObject is type of Sprite
-public class MazeObject 
+public class MazeObject extends Sprite
 {
 	public static final int UNIT = 40; 	// You may use UNIT in all MazeObject subclasses
 	
@@ -15,9 +15,8 @@ public class MazeObject
 	 * 	2. Initialize the board as a new 2D int array. 
 	 * 		NOTE: The board may have no fewer than 10 rows and 10 columns and should be initially filled with 0s.
 	 */
-	// TODO: Declare and initialize the variable described above
 	
-	
+	protected static int[][] board = new int[10][10];
 	
 	/**
 	 * MAZE OBJECT CONSTRUCTOR NOTES
@@ -28,6 +27,7 @@ public class MazeObject
 	 * 		2 - player at this location
 	 * 		3 - trap at this location
 	 * 		4 - finish at this location
+	 *
 	 * 
 	 * CONSTRUCTOR IMPLEMENTATION
 	 * 	1. Initialize the board at the given row and column to the given type of MazeObject.
@@ -43,7 +43,8 @@ public class MazeObject
 	 */
 	public MazeObject(int row, int col, int type)
 	{
-		// TODO: Implement the algorithm listed above
+		board[row][col] = type;
+		printBoard();
 	}
 
 	
@@ -54,18 +55,18 @@ public class MazeObject
 	 * 
 	 * 	TODO: Remove the block comment below to make the method accessible within this class and to other classes
 	 */
-	/*
-	 * public void printBoard()
-	 * {
-	 * 	for (int row = 0; row < board.length; row++)
-	 * 	{
-	 *		for (int col = 0; col < board[row].length; col++)
-	 *		{
-	 *			System.out.print(board[row][col] + " ");
-	 *		}
-	 *		System.out.println();
-	 *  }
-     *  	System.out.println();
-     *  }
-	 */
+	
+	public void printBoard()
+	{
+		for (int row = 0; row < board.length; row++)
+	  	{
+	 		for (int col = 0; col < board[row].length; col++)
+	 		{
+	 			System.out.print(board[row][col] + " ");
+	 		}
+	 		System.out.println();
+	}
+		  System.out.println();
+    }
+	 
 }

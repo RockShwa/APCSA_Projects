@@ -5,7 +5,7 @@ import java.awt.Shape;
 import java.awt.geom.*;
 
 // TODO: Add to the statement below to indicate that a Wall is a type of MazeObject
-public class Wall
+public class Wall extends MazeObject
 {
 	// FIELDS
 	// ------------------------------------------------------------
@@ -40,7 +40,11 @@ public class Wall
 	 */
 	public Wall(int x, int y, int size, Color c) 
 	{
-		// TODO: Implement the algorithm listed above	
+		super(y/UNIT, x/UNIT, 1);
+		myPosX = x;
+		myPosY = y;
+		mySize = size;
+		myColor = c;
 	}
 
 
@@ -95,7 +99,8 @@ public class Wall
 	 */
 	public void draw(Graphics2D g)
 	{
-		// TODO: Implement the algorithm listed above
+		g.setColor(myColor);
+		g.fillRect(myPosX, myPosY, mySize, mySize);
 	}
 
 	
@@ -109,6 +114,6 @@ public class Wall
 	 */
 	public Shape getShape()
 	{
-		return null; // TODO: Replace null with the appropriate implementation.
+		return new Rectangle2D.Double(myPosX, myPosY, mySize, mySize); 
 	}
 }

@@ -11,7 +11,7 @@ public class MazeGameGUI
 	// ------------------------------------------------------------
 	private Stage myStage;			// The base window for the app.
 	private Dimension myScreenSize;
-	private int unit = 40; 			//objects in this maze will be 40 pixels in size.
+	private int UNIT = 40; 			//objects in this maze will be 40 pixels in size.
 
 	// CONSTRUCTORS
 	// ------------------------------------------------------------
@@ -72,8 +72,71 @@ public class MazeGameGUI
 	 */
 	private void addWalls()
 	{
-		// TODO: Implement the algorithm above
+	// 1 1 1 1 1 1 1 1 1 1 *
+	// 1 0 0 0 1 1 0 0 0 1 *
+	// 1 0 1 0 1 1 3 1 0 1 *
+	// 1 0 1 0 0 0 0 1 0 1 *
+	// 4 0 1 1 1 1 0 1 0 1 *
+	// 1 1 1 1 0 0 0 1 1 1 *
+	// 1 0 1 1 0 1 1 0 1 1 *
+	// 1 0 1 1 0 1 1 0 1 1 *
+	// 1 0 3 0 0 0 0 0 0 2 *
+	// 1 1 1 1 1 1 1 1 1 1
+
+		Color wallColor = new Color(51,102,204,1);
+
+		for (int c = 0; c < 10; c++) {
+			myStage.add(new Wall(c * UNIT, 0, UNIT, wallColor));
+		}
 		
+
+		myStage.add(new Wall(0 * UNIT, 1 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(4 * UNIT, 1 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(5 * UNIT, 1 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(9 * UNIT, 1 * UNIT, UNIT, wallColor));
+
+		myStage.add(new Wall(0 * UNIT, 2 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(4 * UNIT, 2 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(5 * UNIT, 2 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(7 * UNIT, 2 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(9 * UNIT, 2 * UNIT, UNIT, wallColor));
+
+		myStage.add(new Wall(0 * UNIT, 3 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(2 * UNIT, 3 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(7 * UNIT, 3 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(9 * UNIT, 3 * UNIT, UNIT, wallColor));
+
+		myStage.add(new Wall(2 * UNIT, 4 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(3 * UNIT, 4 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(4 * UNIT, 4 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(5 * UNIT, 4 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(7 * UNIT, 4 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(9 * UNIT, 4 * UNIT, UNIT, wallColor));
+
+		myStage.add(new Wall(0 * UNIT, 5 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(1 * UNIT, 5 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(2 * UNIT, 5 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(3 * UNIT, 5 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(7 * UNIT, 5 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(8 * UNIT, 5 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(9 * UNIT, 5 * UNIT, UNIT, wallColor));
+
+		for (int i = 6; i < 8; i++) {
+			myStage.add(new Wall(0 * UNIT, i * UNIT, UNIT, wallColor));
+			myStage.add(new Wall(2 * UNIT, i * UNIT, UNIT, wallColor));
+			myStage.add(new Wall(3 * UNIT, i * UNIT, UNIT, wallColor));
+			myStage.add(new Wall(5 * UNIT, i * UNIT, UNIT, wallColor));
+			myStage.add(new Wall(6 * UNIT, i * UNIT, UNIT, wallColor));
+			myStage.add(new Wall(8 * UNIT, i * UNIT, UNIT, wallColor));
+			myStage.add(new Wall(9 * UNIT, i * UNIT, UNIT, wallColor));
+		}
+
+		myStage.add(new Wall(0 * UNIT, 8 * UNIT, UNIT, wallColor));
+
+		
+		for (int c = 0; c < 10; c++) {
+			myStage.add(new Wall(c * UNIT, 10 * UNIT, UNIT, wallColor));
+		}
 	}
 	
 	
@@ -94,7 +157,8 @@ public class MazeGameGUI
 	 */
 	private void addPlayer()
 	{
-		// TODO: Implement the algorithm above
+		// NOT DONE
+		Color playerColor = new Color(102,51,153,1);
 		
 	}
 	
