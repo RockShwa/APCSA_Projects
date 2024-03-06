@@ -1,6 +1,4 @@
 import mickel.anim.Sprite;
-
-// TODO: Add to the statement below to indicate that a MazeObject is type of Sprite
 public class MazeObject extends Sprite
 {
 	public static final int UNIT = 40; 	// You may use UNIT in all MazeObject subclasses

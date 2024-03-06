@@ -4,8 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.*;
 
-// TODO: Add to the statement below to indicate that a Player is a type of MazeObject
-public class Player
+public class Player extends MazeObject
 {
 	private int startX;     	// Starting X position on the GUI, for use with Trap
 	private int startY;      	// Starting Y position on the GUI, for use with Trap
@@ -41,7 +40,14 @@ public class Player
 	 */
 	public Player(int x, int y, int size, Color c)
 	{
-		// TODO: Implement the algorithm listed above
+		super(y/MazeObject.UNIT, x/MazeObject.UNIT, 2);
+		startX = x;
+		myPosX = x;
+		startY = y;
+		myPosY = y;
+		mySize = size;
+		myColor = c;
+		message = "";
 	}
 	
 	
@@ -60,7 +66,9 @@ public class Player
 	 */
 	public void draw(Graphics2D g)
 	{
-		// TODO: Implement the algorithm above
+		g.setColor(myColor);
+		g.fillOval(myPosX, myPosY, mySize, mySize);
+		MazeGameGUI.drawText(g, message, this.getStage().getWidth()/2, this.getStage().getHeight()/2, Color.BLACK, 20, true);
 	}
 	
 	
@@ -74,7 +82,7 @@ public class Player
 	 */
 	public Shape getShape()
 	{
-		return null; // TODO: Replace null with the appropriate implementation.
+		return new Ellipse2D.Double(myPosX, myPosY, mySize, mySize);
 	}
 	
 	/**
@@ -121,23 +129,55 @@ public class Player
 	 */
 	public void keyPressed(Key k) 
 	{
-		if (k == Key.LEFT ) 
+		if (k == Key.LEFT) 
 		{
-			// TODO: Implement step 1 of the algorithm above
+			if ((myPosX - UNIT >= 0) && (board[myPosY/UNIT][myPosX/UNIT - 1] != 1)) {
+				myPosX -= UNIT;
+				board[myPosY/UNIT][myPosX/UNIT + 1] = 0;
+				if (board[myPosY/UNIT][myPosX/UNIT] == 4) {
+					getStage().setBackground(myColor);
+					message = "You beat Aubrey's Maze!";
+				}
+				board[myPosY/UNIT][myPosX/UNIT] = 2;
+			}
 		}
 		else if (k == Key.RIGHT) 
 		{ 
-			// TODO: Implement step 2 of the algorithm above
+			if ((myPosX + UNIT < this.getStage().getWidth()) && (board[myPosY/UNIT][myPosX/UNIT + 1] != 1)) {
+				myPosX += UNIT;
+				board[myPosY/UNIT][myPosX/UNIT - 1] = 0;
+				if (board[myPosY/UNIT][myPosX/UNIT] == 4) {
+					getStage().setBackground(myColor);
+					message = "You beat Aubrey's Maze!";
+				}
+				board[myPosY/UNIT][myPosX/UNIT] = 2;
+			}
 		}
 		else if (k == Key.DOWN ) 
 		{ 
-			// TODO: Implement step 3 of the algorithm above
+			if ((myPosY + UNIT < this.getStage().getHeight()) && (board[myPosY/UNIT + 1][myPosX/UNIT] != 1)) {
+				myPosY += UNIT;
+				board[myPosY/UNIT - 1][myPosX/UNIT] = 0;
+				if (board[myPosY/UNIT][myPosX/UNIT] == 4) {
+					getStage().setBackground(myColor);
+					message = "You beat Aubrey's Maze!";
+				}
+				board[myPosY/UNIT][myPosX/UNIT] = 2;
+			}
 		}
 		else if (k == Key.UP) 
 		{ 
-			// TODO: Implement step 4 of the algorithm above
+			if ((myPosY - UNIT >= 0) && (board[myPosY/UNIT - 1][myPosX/UNIT] != 1)) {
+				myPosY -= UNIT;
+				board[myPosY/UNIT + 1][myPosX/UNIT] = 0;
+				if (board[myPosY/UNIT][myPosX/UNIT] == 4) {
+					getStage().setBackground(myColor);
+					message = "You beat Aubrey's Maze!";
+				}
+				board[myPosY/UNIT][myPosX/UNIT] = 2;
+			}
 		}
-		
-		// TODO: Implement steps 5 & 6 of the algorithm above
+		printBoard();
 	}
+
 }

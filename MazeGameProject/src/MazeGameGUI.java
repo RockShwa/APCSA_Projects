@@ -39,16 +39,23 @@ public class MazeGameGUI
 	 */
 	public MazeGameGUI()
 	{
-		// TODO: Implement steps 1 - 6 of the algorithm above
+		int stageWidth = UNIT * 10;
+		int stageHeight = UNIT * 10;
+		myStage = new Stage("Maze Game", stageWidth, stageHeight);
+		myStage.setBackground(new Color(146, 183, 187, 1));
 		
-		/*
+		
 		myScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = myScreenSize.width;
 		int height = myScreenSize.height;
 		myStage.setLocation(width/2 - stageWidth/2, height/2 - stageHeight/2);
-		*/
 		
-		// TODO: Implement steps 7 - 11 of the algorithm above
+		addWalls();
+		addFinish();
+		addPlayer();
+
+		myStage.openWindow();
+		myStage.start();
 	}
 
 
@@ -83,7 +90,8 @@ public class MazeGameGUI
 	// 1 0 3 0 0 0 0 0 0 2 *
 	// 1 1 1 1 1 1 1 1 1 1
 
-		Color wallColor = new Color(51,102,204,1);
+	// Purple, I think
+		Color wallColor = new Color(51,102,204,255);
 
 		for (int c = 0; c < 10; c++) {
 			myStage.add(new Wall(c * UNIT, 0, UNIT, wallColor));
@@ -96,6 +104,7 @@ public class MazeGameGUI
 		myStage.add(new Wall(9 * UNIT, 1 * UNIT, UNIT, wallColor));
 
 		myStage.add(new Wall(0 * UNIT, 2 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(2 * UNIT, 2 * UNIT, UNIT, wallColor));
 		myStage.add(new Wall(4 * UNIT, 2 * UNIT, UNIT, wallColor));
 		myStage.add(new Wall(5 * UNIT, 2 * UNIT, UNIT, wallColor));
 		myStage.add(new Wall(7 * UNIT, 2 * UNIT, UNIT, wallColor));
@@ -135,7 +144,7 @@ public class MazeGameGUI
 
 		
 		for (int c = 0; c < 10; c++) {
-			myStage.add(new Wall(c * UNIT, 10 * UNIT, UNIT, wallColor));
+			myStage.add(new Wall(c * UNIT, 9 * UNIT, UNIT, wallColor));
 		}
 	}
 	
@@ -157,8 +166,8 @@ public class MazeGameGUI
 	 */
 	private void addPlayer()
 	{
-		// NOT DONE
-		Color playerColor = new Color(102,51,153,1);
+		Color playerColor = new Color(102,51,153,255);
+		myStage.add(new Player(9 * UNIT, 8 * UNIT, UNIT, playerColor));
 		
 	}
 	
@@ -179,12 +188,13 @@ public class MazeGameGUI
 	 */
 	private void addFinish()
 	{
-		// TODO: Implement the algorithm above
+		Color finishColor = new Color(118, 19, 140, 255);
+		myStage.add(new Finish(0 * UNIT, 4 * UNIT, UNIT, finishColor));
 		
 	}
 	
 	
-	public static void drawText(Graphics2D g, String text, int x, int y,Color c, int size, boolean centered)
+	public static void drawText(Graphics2D g, String text, int x, int y, Color c, int size, boolean centered)
 	{
 		g.setFont(new Font("Arial", Font.BOLD, size));
 		FontMetrics metrics = g.getFontMetrics();

@@ -4,7 +4,6 @@ import java.awt.Shape;
 
 import java.awt.geom.*;
 
-// TODO: Add to the statement below to indicate that a Wall is a type of MazeObject
 public class Wall extends MazeObject
 {
 	// FIELDS

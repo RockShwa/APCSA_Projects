@@ -3,8 +3,8 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 
-// TODO: Add to the statement below to indicate that a Finish object is a type of MazeObject
-public class Finish 
+
+public class Finish extends MazeObject
 {
 	private int myPosX;		// X-coordinate on the GUI of this Finish
 	private int myPosY;		// Y-coordinate on the GUI of this Finish
@@ -34,7 +34,11 @@ public class Finish
 	 */
 	public Finish(int x, int y, int size, Color c)
 	{
-		// TODO: Implement the algorithm listed above
+		super(y/UNIT, x/UNIT, 4);
+		myPosX = x;
+		myPosY = y;
+		mySize = size;
+		myColor = c;
 	}
 	
 	
@@ -50,7 +54,8 @@ public class Finish
 	 */
 	public void draw(Graphics2D g)
 	{
-		// TODO: Implement the algorithm listed above
+		g.setColor(myColor);
+		g.fillOval(myPosX, myPosY, mySize, mySize);
 	}
 	
 	
@@ -64,6 +69,6 @@ public class Finish
 	 */
 	public Shape getShape()
 	{
-		return null; // TODO: Replace null with the appropriate implementation.
+		return new Ellipse2D.Double(myPosX, myPosY, mySize, mySize);
 	}
 }
