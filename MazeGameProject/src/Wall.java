@@ -82,7 +82,23 @@ public class Wall extends MazeObject
 	 */
 	public void act()
 	{
-		// TODO: Implement the algorithm listed above
+		// Above
+		Color wallColor = new Color(51,102,204,255);
+		if ((myPosY - UNIT >= 0) && (board[myPosY/UNIT - 1][myPosX/UNIT] == 2)) {
+			myColor = wallColor;
+		}
+		// Below
+		if ((myPosY + UNIT < this.getStage().getHeight()) && (board[myPosY/UNIT + 1][myPosX/UNIT] == 2)) {
+			myColor = wallColor;
+		}
+		// Left
+		if ((myPosX - UNIT >= 0) && (board[myPosY/UNIT][myPosX/UNIT - 1] == 2)) {
+			myColor = wallColor;
+		}
+		// Right
+		if ((myPosX + UNIT < this.getStage().getWidth()) && (board[myPosY/UNIT][myPosX/UNIT + 1] == 2)) {
+			myColor = wallColor;
+		}
 	}
 	
 	

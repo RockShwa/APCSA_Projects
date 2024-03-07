@@ -68,7 +68,7 @@ public class Player extends MazeObject
 	{
 		g.setColor(myColor);
 		g.fillOval(myPosX, myPosY, mySize, mySize);
-		MazeGameGUI.drawText(g, message, this.getStage().getWidth()/2, this.getStage().getHeight()/2, Color.BLACK, 20, true);
+		MazeGameGUI.drawText(g, message, this.getStage().getWidth()/2, this.getStage().getHeight()/2, Color.WHITE, 20, true);
 	}
 	
 	
