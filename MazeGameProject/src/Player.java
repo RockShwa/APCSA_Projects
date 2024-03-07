@@ -13,6 +13,8 @@ public class Player extends MazeObject
 	private int mySize;			// Length and Height of this player on the GUI
 	private Color myColor;		// Color of this Player object
 	private String message; 	// The message displayed on the GUI
+	private boolean trapActivated;
+	private boolean finished;
 	
 	/** 
 	 * PLAYER CONSTRUCTOR
@@ -68,7 +70,11 @@ public class Player extends MazeObject
 	{
 		g.setColor(myColor);
 		g.fillOval(myPosX, myPosY, mySize, mySize);
-		MazeGameGUI.drawText(g, message, this.getStage().getWidth()/2, this.getStage().getHeight()/2, Color.WHITE, 20, true);
+		if (finished == true) {
+			MazeGameGUI.drawText(g, message, this.getStage().getWidth()/2, this.getStage().getHeight()/2, Color.WHITE, 20, true);
+		} else {
+			MazeGameGUI.drawText(g, message, this.getStage().getWidth()/2, this.getStage().getHeight()/2, Color.WHITE, 12, false);
+		}
 	}
 	
 	
@@ -178,6 +184,33 @@ public class Player extends MazeObject
 			}
 		}
 		printBoard();
+	}
+
+	// Add a private helper method to the Player class entitled checkForTraps() which returns a boolean.
+	//  *     The method should take a String parameter called direction.
+	//  *  	- Declare local integer variables for the absolute distance the Player is from the Trap, and 
+	//  *        the minimum distance the Player is from the Trap.
+	//  *      - Initialize the minimum distance the Player is from the Trap to a very large integer value.
+	//  *      - Use a nested for loop to iterate through the 2D array called board.
+	//  *  	  -  If the you encounter a Trap on the board (Traps are coded as 3), calculate the absolute distance
+	//  *           of this Player from the Trap. (HINT: the direction will help you calculate this correctly.)
+	//  *        -  If the absolute distance of the Player from the Trap is less than the minimum distance,
+	//  *           re-assign the minimum distance to the new minimum value.
+	//  *      - Update this Player's message to "The nearest trap is " + minimum distance + " spaces away!" .
+	//  *      - If the minimum distance is a very large integer value, make this Player's message an empty String.
+	//  *      - Return true if any Traps are on the board and false otherwise. 
+	// private void checkForTraps() {
+
+	private boolean checkForTraps(String direction) {
+		int absoluteDistance;
+		int minimumDistance = Integer.MAX_VALUE;
+		for (int c = 0; c < 20; c++) {
+			for (int r = 0; r < 20; r++) {
+				if (board[c][r] == 3) {
+					absoluteDistance = 
+				}
+			}
+		}
 	}
 
 }

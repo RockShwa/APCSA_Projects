@@ -2,7 +2,6 @@
 import mickel.anim.*;
 import java.awt.*;
 
-
 /** The primary GUI window of the MazeGame application.
  */
 public class MazeGameGUI
@@ -55,6 +54,7 @@ public class MazeGameGUI
 		addWalls();
 		addFinish();
 		addPlayer();
+		addTraps();
 
 		myStage.openWindow();
 		myStage.start();
@@ -81,13 +81,14 @@ public class MazeGameGUI
 	 */
 	private void addWalls()
 	{
+	// TODO: Create a int[][] that contains your board walls and interate through it in the addWalls
 
 	// 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
 	// 1 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 1 1 1 
 	// 1 0 1 0 1 0 1 0 1 0 1 1 1 1 0 1 1 0 1 1 
 	// 1 0 1 0 1 0 1 0 1 0 0 0 0 1 0 1 1 0 1 1
-	// 4 0 1 0 0 0 1 0 1 1 1 1 0 1 0 0 0 0 1 1
-	// 1 1 0 1 1 1 1 0 1 1 1 0 0 1 1 1 1 0 1 1
+	// 4 0 1 0 0 0 1 0 1 1 1 1 3 1 0 0 0 0 1 1
+	// 1 1 3 1 1 1 1 0 1 1 1 0 0 1 1 1 1 0 1 1
 	// 1 0 0 0 1 0 0 0 0 0 0 0 1 1 1 0 0 0 1 1
 	// 1 0 1 1 1 0 1 1 1 1 1 0 1 1 1 0 1 1 1 1
 	// 1 0 0 0 1 0 0 0 0 1 1 0 0 1 0 0 1 1 0 2
@@ -100,10 +101,9 @@ public class MazeGameGUI
 	// 1 1 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1
 	// 1 1 0 1 1 1 0 1 1 1 1 1 0 1 0 1 1 0 1 1
 	// 1 0 0 0 0 1 0 1 1 1 1 1 0 1 0 0 0 0 1 1
-	// 1 0 1 1 0 1 0 0 0 0 0 0 0 1 0 1 1 1 1 1
-	// 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 *
+	// 1 0 1 1 0 1 0 0 0 3 0 0 0 1 0 1 1 1 1 1
+	// 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
 	
-	// TODO: change all the backgroundColor to backgroundColor
 		// Color wallColor = new Color(51,102,204,255);
 
 		// Row: 0
@@ -389,6 +389,12 @@ public class MazeGameGUI
 		Color finishColor = new Color(118, 19, 140, 255);
 		myStage.add(new Finish(0 * UNIT, 4 * UNIT, UNIT, finishColor));
 		
+	}
+
+	private void addTraps() {
+		myStage.add(new Trap(12 * UNIT, 4 * UNIT));
+		myStage.add(new Trap(2 * UNIT, 5 * UNIT));
+		myStage.add(new Trap(9 * UNIT, 18 * UNIT));
 	}
 	
 	
