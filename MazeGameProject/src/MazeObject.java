@@ -14,7 +14,7 @@ public class MazeObject extends Sprite
 	 * 		NOTE: The board may have no fewer than 10 rows and 10 columns and should be initially filled with 0s.
 	 */
 	
-	protected static int[][] board = new int[10][10];
+	protected static int[][] board = new int[20][20];
 	
 	/**
 	 * MAZE OBJECT CONSTRUCTOR NOTES
@@ -42,7 +42,7 @@ public class MazeObject extends Sprite
 	public MazeObject(int row, int col, int type)
 	{
 		board[row][col] = type;
-		printBoard();
+		// printBoard();
 	}
 
 	
@@ -50,8 +50,6 @@ public class MazeObject extends Sprite
 	/**
 	 * PRINTBOARD
 	 * 	Prints the 2D array to the console.
-	 * 
-	 * 	TODO: Remove the block comment below to make the method accessible within this class and to other classes
 	 */
 	
 	public void printBoard()

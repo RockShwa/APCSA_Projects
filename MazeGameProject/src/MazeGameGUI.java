@@ -42,7 +42,7 @@ public class MazeGameGUI
 		int stageWidth = UNIT * 10;
 		int stageHeight = UNIT * 10;
 		myStage = new Stage("Maze Game", stageWidth, stageHeight);
-		myStage.setBackground(new Color(146, 183, 187, 1));
+		myStage.setBackground(new Color(146, 183, 187, 255));
 		
 		
 		myScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -79,72 +79,267 @@ public class MazeGameGUI
 	 */
 	private void addWalls()
 	{
-	// 1 1 1 1 1 1 1 1 1 1 *
-	// 1 0 0 0 1 1 0 0 0 1 *
-	// 1 0 1 0 1 1 3 1 0 1 *
-	// 1 0 1 0 0 0 0 1 0 1 *
-	// 4 0 1 1 1 1 0 1 0 1 *
-	// 1 1 1 1 0 0 0 1 1 1 *
-	// 1 0 1 1 0 1 1 0 1 1 *
-	// 1 0 1 1 0 1 1 0 1 1 *
-	// 1 0 3 0 0 0 0 0 0 2 *
-	// 1 1 1 1 1 1 1 1 1 1
 
-	// Purple, I think
+	// 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+	// 1 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 1 1 1 
+	// 1 0 1 0 1 0 1 0 1 0 1 1 1 1 0 1 1 0 1 1 
+	// 1 0 1 0 1 0 1 0 1 0 0 0 0 1 0 1 1 0 1 1
+	// 4 0 1 0 0 0 1 0 1 1 1 1 0 1 0 0 0 0 1 1
+	// 1 1 0 1 1 1 1 0 1 1 1 0 0 1 1 1 1 0 1 1
+	// 1 0 0 0 1 0 0 0 0 0 0 0 1 1 1 0 0 0 1 1
+	// 1 0 1 1 1 0 1 1 1 1 1 0 1 1 1 0 1 1 1 1
+	// 1 0 0 0 1 0 0 0 0 1 1 0 0 1 0 0 1 1 0 2
+	// 1 0 1 0 1 1 1 1 0 1 1 0 1 0 0 1 1 1 0 1
+	// 1 0 1 0 0 0 0 0 0 1 1 0 0 0 1 1 1 1 0 1
+	// 1 0 1 0 1 1 1 1 1 1 1 1 1 1 1 0 0 1 0 1
+	// 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 1 1 0 1
+	// 1 0 1 0 1 1 0 1 1 1 1 1 1 0 1 1 1 1 0 1
+	// 1 0 0 1 0 1 0 1 1 0 1 0 1 0 0 0 0 0 0 1
+	// 1 1 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1
+	// 1 1 0 1 1 1 0 1 1 1 1 1 0 1 0 1 1 0 1 1
+	// 1 0 0 0 0 1 0 1 1 1 1 1 0 1 0 0 0 0 1 1
+	// 1 0 1 1 0 1 0 0 0 0 0 0 0 1 0 1 1 1 1 1
+	// 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 *
+	
 		Color wallColor = new Color(51,102,204,255);
 
-		for (int c = 0; c < 10; c++) {
+		// Row: 0
+		for (int c = 0; c < 20; c++) {
 			myStage.add(new Wall(c * UNIT, 0, UNIT, wallColor));
 		}
 		
-
+		// Row: 1
 		myStage.add(new Wall(0 * UNIT, 1 * UNIT, UNIT, wallColor));
 		myStage.add(new Wall(4 * UNIT, 1 * UNIT, UNIT, wallColor));
-		myStage.add(new Wall(5 * UNIT, 1 * UNIT, UNIT, wallColor));
-		myStage.add(new Wall(9 * UNIT, 1 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(8 * UNIT, 1 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(17 * UNIT, 1 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(18 * UNIT, 1 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(19 * UNIT, 1 * UNIT, UNIT, wallColor));
 
+		// Row: 2
 		myStage.add(new Wall(0 * UNIT, 2 * UNIT, UNIT, wallColor));
 		myStage.add(new Wall(2 * UNIT, 2 * UNIT, UNIT, wallColor));
 		myStage.add(new Wall(4 * UNIT, 2 * UNIT, UNIT, wallColor));
-		myStage.add(new Wall(5 * UNIT, 2 * UNIT, UNIT, wallColor));
-		myStage.add(new Wall(7 * UNIT, 2 * UNIT, UNIT, wallColor));
-		myStage.add(new Wall(9 * UNIT, 2 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(6 * UNIT, 2 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(8 * UNIT, 2 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(10 * UNIT, 2 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(11 * UNIT, 2 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(12 * UNIT, 2 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(13 * UNIT, 2 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(15 * UNIT, 2 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(16 * UNIT, 2 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(18 * UNIT, 2 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(19 * UNIT, 2 * UNIT, UNIT, wallColor));
 
+		// Row: 3
 		myStage.add(new Wall(0 * UNIT, 3 * UNIT, UNIT, wallColor));
 		myStage.add(new Wall(2 * UNIT, 3 * UNIT, UNIT, wallColor));
-		myStage.add(new Wall(7 * UNIT, 3 * UNIT, UNIT, wallColor));
-		myStage.add(new Wall(9 * UNIT, 3 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(4 * UNIT, 3 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(6 * UNIT, 3 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(8 * UNIT, 3 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(13 * UNIT, 3 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(15 * UNIT, 3 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(16 * UNIT, 3 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(18 * UNIT, 3 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(19 * UNIT, 3 * UNIT, UNIT, wallColor));
 
+		// Row: 4
 		myStage.add(new Wall(2 * UNIT, 4 * UNIT, UNIT, wallColor));
-		myStage.add(new Wall(3 * UNIT, 4 * UNIT, UNIT, wallColor));
-		myStage.add(new Wall(4 * UNIT, 4 * UNIT, UNIT, wallColor));
-		myStage.add(new Wall(5 * UNIT, 4 * UNIT, UNIT, wallColor));
-		myStage.add(new Wall(7 * UNIT, 4 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(6 * UNIT, 4 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(8 * UNIT, 4 * UNIT, UNIT, wallColor));
 		myStage.add(new Wall(9 * UNIT, 4 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(10 * UNIT, 4 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(11 * UNIT, 4 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(13 * UNIT, 4 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(18 * UNIT, 4 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(19 * UNIT, 4 * UNIT, UNIT, wallColor));
 
+		// Row: 5
 		myStage.add(new Wall(0 * UNIT, 5 * UNIT, UNIT, wallColor));
 		myStage.add(new Wall(1 * UNIT, 5 * UNIT, UNIT, wallColor));
-		myStage.add(new Wall(2 * UNIT, 5 * UNIT, UNIT, wallColor));
 		myStage.add(new Wall(3 * UNIT, 5 * UNIT, UNIT, wallColor));
-		myStage.add(new Wall(7 * UNIT, 5 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(4 * UNIT, 5 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(5 * UNIT, 5 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(6 * UNIT, 5 * UNIT, UNIT, wallColor));
 		myStage.add(new Wall(8 * UNIT, 5 * UNIT, UNIT, wallColor));
 		myStage.add(new Wall(9 * UNIT, 5 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(10 * UNIT, 5 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(13 * UNIT, 5 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(14 * UNIT, 5 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(15 * UNIT, 5 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(16 * UNIT, 5 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(18 * UNIT, 5 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(19 * UNIT, 5 * UNIT, UNIT, wallColor));
 
-		for (int i = 6; i < 8; i++) {
-			myStage.add(new Wall(0 * UNIT, i * UNIT, UNIT, wallColor));
-			myStage.add(new Wall(2 * UNIT, i * UNIT, UNIT, wallColor));
-			myStage.add(new Wall(3 * UNIT, i * UNIT, UNIT, wallColor));
-			myStage.add(new Wall(5 * UNIT, i * UNIT, UNIT, wallColor));
-			myStage.add(new Wall(6 * UNIT, i * UNIT, UNIT, wallColor));
-			myStage.add(new Wall(8 * UNIT, i * UNIT, UNIT, wallColor));
-			myStage.add(new Wall(9 * UNIT, i * UNIT, UNIT, wallColor));
-		}
-
-		myStage.add(new Wall(0 * UNIT, 8 * UNIT, UNIT, wallColor));
-
+		// Row: 6 
+		myStage.add(new Wall(0 * UNIT, 6 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(4 * UNIT, 6 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(12 * UNIT, 6 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(13 * UNIT, 6 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(14 * UNIT, 6 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(18 * UNIT, 6 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(19 * UNIT, 6 * UNIT, UNIT, wallColor));
 		
-		for (int c = 0; c < 10; c++) {
-			myStage.add(new Wall(c * UNIT, 9 * UNIT, UNIT, wallColor));
+		// Row: 7
+		myStage.add(new Wall(0 * UNIT, 7 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(2 * UNIT, 7 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(3 * UNIT, 7 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(4 * UNIT, 7 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(6 * UNIT, 7 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(7 * UNIT, 7 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(8 * UNIT, 7 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(9 * UNIT, 7 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(10 * UNIT, 7 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(12 * UNIT, 7 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(13 * UNIT, 7 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(14 * UNIT, 7 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(16 * UNIT, 7 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(17 * UNIT, 7 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(18 * UNIT, 7 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(19 * UNIT, 7 * UNIT, UNIT, wallColor));
+		
+
+		// Row: 8
+		myStage.add(new Wall(0 * UNIT, 8 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(4 * UNIT, 8 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(9 * UNIT, 8 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(10 * UNIT, 8 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(13 * UNIT, 8 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(16 * UNIT, 8 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(17 * UNIT, 8 * UNIT, UNIT, wallColor));
+
+		// Row: 9
+		myStage.add(new Wall(0 * UNIT, 9 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(2 * UNIT, 9 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(4 * UNIT, 9 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(5 * UNIT, 9 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(6 * UNIT, 9 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(7 * UNIT, 9 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(9 * UNIT, 9 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(10 * UNIT, 9 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(12 * UNIT, 9 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(15 * UNIT, 9 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(16 * UNIT, 9 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(17 * UNIT, 9 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(19 * UNIT, 9 * UNIT, UNIT, wallColor));
+
+		// Row: 10
+		myStage.add(new Wall(0 * UNIT, 10 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(2 * UNIT, 10 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(9 * UNIT, 10 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(10 * UNIT, 10 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(14 * UNIT, 10 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(15 * UNIT, 10 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(16 * UNIT, 10 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(17 * UNIT, 10 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(19 * UNIT, 10 * UNIT, UNIT, wallColor));
+
+		// Row: 11
+		myStage.add(new Wall(0 * UNIT, 11 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(2 * UNIT, 11 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(4 * UNIT, 11 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(5 * UNIT, 11 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(6 * UNIT, 11 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(7 * UNIT, 11 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(8 * UNIT, 11 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(9 * UNIT, 11 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(10 * UNIT, 11 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(11 * UNIT, 11 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(12 * UNIT, 11 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(13 * UNIT, 11 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(14 * UNIT, 11 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(17 * UNIT, 11 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(19 * UNIT, 11 * UNIT, UNIT, wallColor));
+
+		// Row: 12
+		myStage.add(new Wall(0 * UNIT, 12 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(2 * UNIT, 12 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(5 * UNIT, 12 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(16 * UNIT, 12 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(17 * UNIT, 12 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(19 * UNIT, 12 * UNIT, UNIT, wallColor));
+
+		// Row: 13
+		myStage.add(new Wall(0 * UNIT, 13 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(2 * UNIT, 13 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(4 * UNIT, 13 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(5 * UNIT, 13 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(7 * UNIT, 13 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(8 * UNIT, 13 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(9 * UNIT, 13 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(10 * UNIT, 13 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(11 * UNIT, 13 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(12 * UNIT, 13 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(14 * UNIT, 13 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(15 * UNIT, 13 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(16 * UNIT, 13 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(17 * UNIT, 13 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(19 * UNIT, 13 * UNIT, UNIT, wallColor));
+
+		// Row: 14
+		myStage.add(new Wall(0 * UNIT, 14 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(3 * UNIT, 14 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(5 * UNIT, 14 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(7 * UNIT, 14 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(8 * UNIT, 14 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(10 * UNIT, 14 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(12 * UNIT, 14 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(19 * UNIT, 14 * UNIT, UNIT, wallColor));
+
+		// Row: 15
+		myStage.add(new Wall(0 * UNIT, 15 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(1 * UNIT, 15 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(13 * UNIT, 15 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(14 * UNIT, 15 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(15 * UNIT, 15 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(16 * UNIT, 15 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(18 * UNIT, 15 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(19 * UNIT, 15 * UNIT, UNIT, wallColor));
+
+		// Row: 16
+		myStage.add(new Wall(0 * UNIT, 16 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(1 * UNIT, 16 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(3 * UNIT, 16 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(4 * UNIT, 16 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(5 * UNIT, 16 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(7 * UNIT, 16 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(8 * UNIT, 16 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(9 * UNIT, 16 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(10 * UNIT, 16 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(11 * UNIT, 16 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(13 * UNIT, 16 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(15 * UNIT, 16 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(16 * UNIT, 16 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(18 * UNIT, 16 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(19 * UNIT, 16 * UNIT, UNIT, wallColor));
+
+		// Row: 17
+		myStage.add(new Wall(0 * UNIT, 17 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(5 * UNIT, 17 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(7 * UNIT, 17 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(8 * UNIT, 17 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(9 * UNIT, 17 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(10 * UNIT, 17 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(11 * UNIT, 17 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(13 * UNIT, 17 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(18 * UNIT, 17 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(19 * UNIT, 17 * UNIT, UNIT, wallColor));
+		
+		// Row: 18
+		myStage.add(new Wall(0 * UNIT, 18 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(2 * UNIT, 18 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(3 * UNIT, 18 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(5 * UNIT, 18 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(13 * UNIT, 18 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(15 * UNIT, 18 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(16 * UNIT, 18 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(17 * UNIT, 18 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(18 * UNIT, 18 * UNIT, UNIT, wallColor));
+		myStage.add(new Wall(19 * UNIT, 18 * UNIT, UNIT, wallColor));
+
+		// Row: 19
+		for (int c = 0; c < 20; c++) {
+			myStage.add(new Wall(c * UNIT, 19 * UNIT, UNIT, wallColor));
 		}
 	}
 	
@@ -167,7 +362,7 @@ public class MazeGameGUI
 	private void addPlayer()
 	{
 		Color playerColor = new Color(102,51,153,255);
-		myStage.add(new Player(9 * UNIT, 8 * UNIT, UNIT, playerColor));
+		myStage.add(new Player(19 * UNIT, 8 * UNIT, UNIT, playerColor));
 		
 	}
 	
