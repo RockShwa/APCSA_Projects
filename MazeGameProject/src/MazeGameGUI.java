@@ -392,9 +392,9 @@ public class MazeGameGUI
 	}
 
 	private void addTraps() {
-		myStage.add(new Trap(12 * UNIT, 4 * UNIT));
+		//myStage.add(new Trap(12 * UNIT, 4 * UNIT));
 		myStage.add(new Trap(2 * UNIT, 5 * UNIT));
-		myStage.add(new Trap(9 * UNIT, 18 * UNIT));
+		//myStage.add(new Trap(9 * UNIT, 18 * UNIT));
 	}
 	
 	

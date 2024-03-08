@@ -14,7 +14,7 @@ public class Player extends MazeObject
 	private Color myColor;		// Color of this Player object
 	private String message; 	// The message displayed on the GUI
 	private boolean trapActivated;
-	private boolean finished;
+	private boolean finished; // TODO: point of this instance var?
 	
 	/** 
 	 * PLAYER CONSTRUCTOR
@@ -50,7 +50,6 @@ public class Player extends MazeObject
 		mySize = size;
 		myColor = c;
 		message = "";
-		finished = false;
 	}
 	
 	
@@ -134,9 +133,19 @@ public class Player extends MazeObject
 	 *    
 	 *  @param k	the key that was pressed
 	 */
+	// In all instances (LEFT, RIGHT, DOWN, or UP), 
+	//  *      		- declare a boolean variable and initialize to the this Player's checkForTraps() method.
+	//  *                Pass through the corresponding direction ("LEFT","RIGHT","DOWN", or "UP")
+	//  *      		- if traps are still on the board and if this Player is about to move into the same location
+	//  *    	          on the board as a Trap object (denoted by 3), 
+	//  *    					- move the Player into the new position 
+	//  *     					- change the Player's previous location on the board to a 0
+	//  *    					- change the Player's current location on the board to a 2
+	//  *    					- assign trapActivated to true
+	//  *    					- change this Player's message to "Trap Activated! Press any key to continue...".
 
 	public void keyPressed(Key k) 
-	// TODO: Break up the check for finish and check for traps into seperate methods
+	// TODO: Break up the check for finish and check for traps into seperate methods?
 	{
 		boolean checkForTrapResult;
 		if (trapActivated == true) {
@@ -148,6 +157,7 @@ public class Player extends MazeObject
 		}
 		if (k == Key.LEFT) 
 		{
+			checkForTrapResult = checkForTraps(Key.LEFT);
 			if ((myPosX - UNIT >= 0) && (board[myPosY/UNIT][myPosX/UNIT - 1] != 1)) {
 				myPosX -= UNIT;
 				board[myPosY/UNIT][myPosX/UNIT + 1] = 0;
@@ -162,10 +172,10 @@ public class Player extends MazeObject
 				}
 				board[myPosY/UNIT][myPosX/UNIT] = 2;
 			}
-			checkForTrapResult = checkForTraps("LEFT"); // where to place this so it doesn't mess with message after finish?
 		}
 		else if (k == Key.RIGHT) 
 		{ 
+			checkForTrapResult = checkForTraps(Key.RIGHT);
 			if ((myPosX + UNIT < this.getStage().getWidth()) && (board[myPosY/UNIT][myPosX/UNIT + 1] != 1)) {
 				myPosX += UNIT;
 				board[myPosY/UNIT][myPosX/UNIT - 1] = 0;
@@ -179,10 +189,10 @@ public class Player extends MazeObject
 				}
 				board[myPosY/UNIT][myPosX/UNIT] = 2;
 			}
-			checkForTrapResult = checkForTraps("RIGHT");
 		}
 		else if (k == Key.DOWN ) 
 		{ 
+			checkForTrapResult = checkForTraps(Key.DOWN);
 			if ((myPosY + UNIT < this.getStage().getHeight()) && (board[myPosY/UNIT + 1][myPosX/UNIT] != 1)) {
 				myPosY += UNIT;
 				board[myPosY/UNIT - 1][myPosX/UNIT] = 0;
@@ -196,10 +206,10 @@ public class Player extends MazeObject
 				}
 				board[myPosY/UNIT][myPosX/UNIT] = 2;
 			}
-			checkForTrapResult = checkForTraps("DOWN");
 		}
 		else if (k == Key.UP) 
 		{ 
+			checkForTrapResult = checkForTraps(Key.UP);
 			if ((myPosY - UNIT >= 0) && (board[myPosY/UNIT - 1][myPosX/UNIT] != 1)) {
 				myPosY -= UNIT;
 				board[myPosY/UNIT + 1][myPosX/UNIT] = 0;
@@ -213,7 +223,6 @@ public class Player extends MazeObject
 				}
 				board[myPosY/UNIT][myPosX/UNIT] = 2;
 			}
-			checkForTrapResult = checkForTraps("UP");
 		}
 		printBoard();
 	}
@@ -232,33 +241,33 @@ public class Player extends MazeObject
 	//  *      - If the minimum distance is a very large integer value, make this Player's message an empty String.
 	//  *      - Return true if any Traps are on the board and false otherwise. 
 
-	private boolean checkForTraps(String direction) {
-		// Question: direction in regards to what? The player or the trap?
-		// TODO: Create an enum for direction :)
-		// Having a message and distance error here
+	private boolean checkForTraps(Key k) {
+		// Include a range for the distances? (Wall space units or the size of the board?)
+		// TODO: Font not centered, distances still weird? 
 		int absoluteDistance = 0;
 		int minimumDistance = Integer.MAX_VALUE;
 		for (int c = 0; c < 20; c++) {
 			for (int r = 0; r < 20; r++) {
 				if (board[c][r] == 3) {
-					if (direction.equals("LEFT")) {
-						absoluteDistance = c - myPosX;
+					// and x and y components to find absolute distance
+					if (k == Key.LEFT) { // Move left, so y doesn't change
+						absoluteDistance = Math.abs((myPosX/UNIT - 1) - c) + Math.abs(myPosY/UNIT - c); 
 					}
-					else if (direction.equals("RIGHT")) {
-						absoluteDistance = myPosX - c;
+					else if (k == Key.RIGHT) { // Move right, so y doesn't change
+						absoluteDistance = Math.abs((myPosX/UNIT + 1) - c) + Math.abs(myPosY/UNIT - c);
 					}
-					else if (direction.equals("DOWN")) {
-						absoluteDistance = r - myPosY;
+					else if (k == Key.DOWN) { // Move down, so x doesn't change
+						absoluteDistance = Math.abs(myPosX/UNIT - c) + Math.abs((myPosY/UNIT + 1) - c);
 					}
-					else if (direction.equals("UP")) {
-						absoluteDistance = myPosY - r;
+					else if (k == Key.UP) { // Move up, so y doesn't change
+						absoluteDistance = Math.abs(myPosX/UNIT - c) + Math.abs((myPosY/UNIT - 1) - c);
 					}
 					if (absoluteDistance < minimumDistance) {
 						minimumDistance = absoluteDistance;
 					} else {
 						message = "";
 					}
-					message = "The nearest trap is " + minimumDistance + " spaces away!";
+					message = "The nearest trap is " + minimumDistance + " spaces away!"; // where should this go?
 					return true;
 				}
 
