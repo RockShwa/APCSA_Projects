@@ -62,6 +62,7 @@ public class Trap extends MazeObject
 	 *      		- change the Trap's location on the board to a 0
 	 *      		- change the Player's current location on the board to a 2
 	 *        		- Set trapActivated to false.
+	 * 
 	 *      - In all instances (LEFT, RIGHT, DOWN, or UP), 
 	 *      		- declare a boolean variable and initialize to the this Player's checkForTraps() method.
 	 *                Pass through the corresponding direction ("LEFT","RIGHT","DOWN", or "UP")

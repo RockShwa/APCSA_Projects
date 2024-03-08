@@ -50,6 +50,7 @@ public class Player extends MazeObject
 		mySize = size;
 		myColor = c;
 		message = "";
+		finished = false;
 	}
 	
 	
@@ -133,8 +134,18 @@ public class Player extends MazeObject
 	 *    
 	 *  @param k	the key that was pressed
 	 */
+
 	public void keyPressed(Key k) 
+	// TODO: Break up the check for finish and check for traps into seperate methods
 	{
+		boolean checkForTrapResult;
+		if (trapActivated == true) {
+			board[myPosX/UNIT][myPosY/UNIT] = 0;
+			myPosX = startX;
+			myPosY = startY;
+			board[myPosX/UNIT][myPosY/UNIT] = 2;
+			trapActivated = false;
+		}
 		if (k == Key.LEFT) 
 		{
 			if ((myPosX - UNIT >= 0) && (board[myPosY/UNIT][myPosX/UNIT - 1] != 1)) {
@@ -144,8 +155,14 @@ public class Player extends MazeObject
 					getStage().setBackground(myColor);
 					message = "You beat Aubrey's Maze!";
 				}
+				// TODO: checking for traps still on board necessary?
+				if (board[myPosY/UNIT][myPosX/UNIT] == 3) {
+					message = "Trap Activated! Press any key to continue...";
+					trapActivated = true;
+				}
 				board[myPosY/UNIT][myPosX/UNIT] = 2;
 			}
+			checkForTrapResult = checkForTraps("LEFT"); // where to place this so it doesn't mess with message after finish?
 		}
 		else if (k == Key.RIGHT) 
 		{ 
@@ -156,8 +173,13 @@ public class Player extends MazeObject
 					getStage().setBackground(myColor);
 					message = "You beat Aubrey's Maze!";
 				}
+				if (board[myPosY/UNIT][myPosX/UNIT] == 3) {
+					message = "Trap Activated! Press any key to continue...";
+					trapActivated = true;
+				}
 				board[myPosY/UNIT][myPosX/UNIT] = 2;
 			}
+			checkForTrapResult = checkForTraps("RIGHT");
 		}
 		else if (k == Key.DOWN ) 
 		{ 
@@ -168,8 +190,13 @@ public class Player extends MazeObject
 					getStage().setBackground(myColor);
 					message = "You beat Aubrey's Maze!";
 				}
+				if (board[myPosY/UNIT][myPosX/UNIT] == 3) {
+					message = "Trap Activated! Press any key to continue...";
+					trapActivated = true;
+				}
 				board[myPosY/UNIT][myPosX/UNIT] = 2;
 			}
+			checkForTrapResult = checkForTraps("DOWN");
 		}
 		else if (k == Key.UP) 
 		{ 
@@ -180,8 +207,13 @@ public class Player extends MazeObject
 					getStage().setBackground(myColor);
 					message = "You beat Aubrey's Maze!";
 				}
+				if (board[myPosY/UNIT][myPosX/UNIT] == 3) {
+					message = "Trap Activated! Press any key to continue...";
+					trapActivated = true;
+				}
 				board[myPosY/UNIT][myPosX/UNIT] = 2;
 			}
+			checkForTrapResult = checkForTraps("UP");
 		}
 		printBoard();
 	}
@@ -199,18 +231,42 @@ public class Player extends MazeObject
 	//  *      - Update this Player's message to "The nearest trap is " + minimum distance + " spaces away!" .
 	//  *      - If the minimum distance is a very large integer value, make this Player's message an empty String.
 	//  *      - Return true if any Traps are on the board and false otherwise. 
-	// private void checkForTraps() {
 
 	private boolean checkForTraps(String direction) {
-		int absoluteDistance;
+		// Question: direction in regards to what? The player or the trap?
+		// TODO: Create an enum for direction :)
+		// Having a message and distance error here
+		int absoluteDistance = 0;
 		int minimumDistance = Integer.MAX_VALUE;
 		for (int c = 0; c < 20; c++) {
 			for (int r = 0; r < 20; r++) {
 				if (board[c][r] == 3) {
-					absoluteDistance = 
+					if (direction.equals("LEFT")) {
+						absoluteDistance = c - myPosX;
+					}
+					else if (direction.equals("RIGHT")) {
+						absoluteDistance = myPosX - c;
+					}
+					else if (direction.equals("DOWN")) {
+						absoluteDistance = r - myPosY;
+					}
+					else if (direction.equals("UP")) {
+						absoluteDistance = myPosY - r;
+					}
+					if (absoluteDistance < minimumDistance) {
+						minimumDistance = absoluteDistance;
+					} else {
+						message = "";
+					}
+					message = "The nearest trap is " + minimumDistance + " spaces away!";
+					return true;
 				}
+
 			}
 		}
+		return false;
 	}
+
+	
 
 }
