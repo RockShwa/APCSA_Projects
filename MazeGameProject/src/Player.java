@@ -133,6 +133,11 @@ public class Player extends MazeObject
 	 *    
 	 *  @param k	the key that was pressed
 	 */
+	// - If trapActivated is true, 
+	//  *      		- send the Player back to (startX, startY) 
+	//  *      		- change the Trap's location on the board to a 0
+	//  *      		- change the Player's current location on the board to a 2
+	//  *        		- Set trapActivated to false.
 	// In all instances (LEFT, RIGHT, DOWN, or UP), 
 	//  *      		- declare a boolean variable and initialize to the this Player's checkForTraps() method.
 	//  *                Pass through the corresponding direction ("LEFT","RIGHT","DOWN", or "UP")
@@ -157,16 +162,16 @@ public class Player extends MazeObject
 		}
 		if (k == Key.LEFT) 
 		{
-			checkForTrapResult = checkForTraps(Key.LEFT);
 			if ((myPosX - UNIT >= 0) && (board[myPosY/UNIT][myPosX/UNIT - 1] != 1)) {
+				checkForTrapResult = checkForTraps(Key.LEFT);
 				myPosX -= UNIT;
 				board[myPosY/UNIT][myPosX/UNIT + 1] = 0;
 				if (board[myPosY/UNIT][myPosX/UNIT] == 4) {
+					finished = true;
 					getStage().setBackground(myColor);
 					message = "You beat Aubrey's Maze!";
 				}
-				// TODO: checking for traps still on board necessary?
-				if (board[myPosY/UNIT][myPosX/UNIT] == 3) {
+				if (board[myPosY/UNIT][myPosX/UNIT] == 3 && checkForTrapResult == true) {
 					message = "Trap Activated! Press any key to continue...";
 					trapActivated = true;
 				}
@@ -175,15 +180,16 @@ public class Player extends MazeObject
 		}
 		else if (k == Key.RIGHT) 
 		{ 
-			checkForTrapResult = checkForTraps(Key.RIGHT);
 			if ((myPosX + UNIT < this.getStage().getWidth()) && (board[myPosY/UNIT][myPosX/UNIT + 1] != 1)) {
+				checkForTrapResult = checkForTraps(Key.RIGHT);
 				myPosX += UNIT;
 				board[myPosY/UNIT][myPosX/UNIT - 1] = 0;
 				if (board[myPosY/UNIT][myPosX/UNIT] == 4) {
+					finished = true;
 					getStage().setBackground(myColor);
 					message = "You beat Aubrey's Maze!";
 				}
-				if (board[myPosY/UNIT][myPosX/UNIT] == 3) {
+				if (board[myPosY/UNIT][myPosX/UNIT] == 3 && checkForTrapResult == true) {
 					message = "Trap Activated! Press any key to continue...";
 					trapActivated = true;
 				}
@@ -192,15 +198,16 @@ public class Player extends MazeObject
 		}
 		else if (k == Key.DOWN ) 
 		{ 
-			checkForTrapResult = checkForTraps(Key.DOWN);
 			if ((myPosY + UNIT < this.getStage().getHeight()) && (board[myPosY/UNIT + 1][myPosX/UNIT] != 1)) {
+				checkForTrapResult = checkForTraps(Key.DOWN);
 				myPosY += UNIT;
 				board[myPosY/UNIT - 1][myPosX/UNIT] = 0;
 				if (board[myPosY/UNIT][myPosX/UNIT] == 4) {
+					finished = true;
 					getStage().setBackground(myColor);
 					message = "You beat Aubrey's Maze!";
 				}
-				if (board[myPosY/UNIT][myPosX/UNIT] == 3) {
+				if (board[myPosY/UNIT][myPosX/UNIT] == 3 && checkForTrapResult == true) {
 					message = "Trap Activated! Press any key to continue...";
 					trapActivated = true;
 				}
@@ -209,15 +216,16 @@ public class Player extends MazeObject
 		}
 		else if (k == Key.UP) 
 		{ 
-			checkForTrapResult = checkForTraps(Key.UP);
 			if ((myPosY - UNIT >= 0) && (board[myPosY/UNIT - 1][myPosX/UNIT] != 1)) {
+				checkForTrapResult = checkForTraps(Key.UP);
 				myPosY -= UNIT;
 				board[myPosY/UNIT + 1][myPosX/UNIT] = 0;
 				if (board[myPosY/UNIT][myPosX/UNIT] == 4) {
+					finished = true;
 					getStage().setBackground(myColor);
 					message = "You beat Aubrey's Maze!";
 				}
-				if (board[myPosY/UNIT][myPosX/UNIT] == 3) {
+				if (board[myPosY/UNIT][myPosX/UNIT] == 3 && checkForTrapResult == true) {
 					message = "Trap Activated! Press any key to continue...";
 					trapActivated = true;
 				}
@@ -227,33 +235,23 @@ public class Player extends MazeObject
 		printBoard();
 	}
 
-	// Add a private helper method to the Player class entitled checkForTraps() which returns a boolean.
-	//  *     The method should take a String parameter called direction.
-	//  *  	- Declare local integer variables for the absolute distance the Player is from the Trap, and 
-	//  *        the minimum distance the Player is from the Trap.
-	//  *      - Initialize the minimum distance the Player is from the Trap to a very large integer value.
-	//  *      - Use a nested for loop to iterate through the 2D array called board.
-	//  *  	  -  If the you encounter a Trap on the board (Traps are coded as 3), calculate the absolute distance
-	//  *           of this Player from the Trap. (HINT: the direction will help you calculate this correctly.)
-	//  *        -  If the absolute distance of the Player from the Trap is less than the minimum distance,
-	//  *           re-assign the minimum distance to the new minimum value.
-	//  *      - Update this Player's message to "The nearest trap is " + minimum distance + " spaces away!" .
-	//  *      - If the minimum distance is a very large integer value, make this Player's message an empty String.
-	//  *      - Return true if any Traps are on the board and false otherwise. 
-
 	private boolean checkForTraps(Key k) {
-		// Include a range for the distances? (Wall space units or the size of the board?)
-		// TODO: Font not centered, distances still weird? 
+		// TODO: distances weird, recalculate
+		// TODO: Two walls pop up when I restart after hitting a trap, why?
 		int absoluteDistance = 0;
 		int minimumDistance = Integer.MAX_VALUE;
-		for (int c = 0; c < 20; c++) {
-			for (int r = 0; r < 20; r++) {
+		for (int r = 0; r < 20; r++) {
+			for (int c = 0; c < 20; c++) {
 				if (board[c][r] == 3) {
 					// and x and y components to find absolute distance
 					if (k == Key.LEFT) { // Move left, so y doesn't change
-						absoluteDistance = Math.abs((myPosX/UNIT - 1) - c) + Math.abs(myPosY/UNIT - c); 
+						absoluteDistance = Math.abs((myPosX/UNIT - 1) - r) + Math.abs(myPosY/UNIT - c);
 					}
 					else if (k == Key.RIGHT) { // Move right, so y doesn't change
+					System.out.println(myPosX);
+						System.out.println(myPosY);
+						System.out.println((myPosX/UNIT - 1) - c);
+						System.out.println(myPosY/UNIT - c);
 						absoluteDistance = Math.abs((myPosX/UNIT + 1) - c) + Math.abs(myPosY/UNIT - c);
 					}
 					else if (k == Key.DOWN) { // Move down, so x doesn't change
@@ -264,15 +262,18 @@ public class Player extends MazeObject
 					}
 					if (absoluteDistance < minimumDistance) {
 						minimumDistance = absoluteDistance;
-					} else {
+					}
+					message = "The nearest trap is " + minimumDistance + " spaces away!";
+					if (minimumDistance == Integer.MAX_VALUE) {
 						message = "";
 					}
-					message = "The nearest trap is " + minimumDistance + " spaces away!"; // where should this go?
 					return true;
 				}
 
 			}
 		}
+		// Put this here to reset message once all traps are gone
+		message = "";
 		return false;
 	}
 
