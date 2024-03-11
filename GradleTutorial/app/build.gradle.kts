@@ -8,6 +8,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    `java-library`
     `maven-publish`
 }
 
@@ -54,4 +55,9 @@ publishing {
             from(components["java"])
         }
     }
+}
+
+// This is how you change where .class files go :D
+tasks.compileJava {
+    destinationDirectory = file("bin");
 }
