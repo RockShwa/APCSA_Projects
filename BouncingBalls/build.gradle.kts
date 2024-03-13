@@ -32,5 +32,5 @@ tasks.named<Test>("test") {
 
 application {
     // Define the main class for the application.
-    mainClass = "MazeGame"
+    mainClass = "BouncingBalls"
 }

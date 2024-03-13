@@ -7,7 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 
 import java.awt.geom.Ellipse2D;
-import java.util.*;
 
 /** Represents a Ball that dynamically bounces around the interior
  *  of a rectangular Stage.
