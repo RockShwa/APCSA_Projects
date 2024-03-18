@@ -14,7 +14,7 @@ public class Player extends MazeObject
 	private Color myColor;		// Color of this Player object
 	private String message; 	// The message displayed on the GUI
 	private boolean trapActivated;
-	private boolean finished; // TODO: point of this instance var?
+	private boolean finished;
 	
 	/** 
 	 * PLAYER CONSTRUCTOR
