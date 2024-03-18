@@ -150,9 +150,7 @@ public class Player extends MazeObject
 	//  *    					- change this Player's message to "Trap Activated! Press any key to continue...".
 
 	public void keyPressed(Key k) 
-	// TODO: Break up the check for finish and check for traps into seperate methods?
 	{
-		boolean checkForTrapResult;
 		if (trapActivated == true) {
 			board[myPosX/UNIT][myPosY/UNIT] = 0;
 			myPosX = startX;
@@ -160,79 +158,63 @@ public class Player extends MazeObject
 			board[myPosX/UNIT][myPosY/UNIT] = 2;
 			trapActivated = false;
 		}
-		if (k == Key.LEFT) 
+		if (k == Key.LEFT && !finished) 
 		{
 			if ((myPosX - UNIT >= 0) && (board[myPosY/UNIT][myPosX/UNIT - 1] != 1)) {
-				checkForTrapResult = checkForTraps(Key.LEFT);
 				myPosX -= UNIT;
 				board[myPosY/UNIT][myPosX/UNIT + 1] = 0;
-				if (board[myPosY/UNIT][myPosX/UNIT] == 4) {
-					finished = true;
-					getStage().setBackground(myColor);
-					message = "You beat Aubrey's Maze!";
-				}
-				if (board[myPosY/UNIT][myPosX/UNIT] == 3 && checkForTrapResult == true) {
-					message = "Trap Activated! Press any key to continue...";
-					trapActivated = true;
-				}
+				checkIfOnTrap(Key.LEFT);
+				checkFinished();
 				board[myPosY/UNIT][myPosX/UNIT] = 2;
 			}
 		}
-		else if (k == Key.RIGHT) 
+		else if (k == Key.RIGHT && !finished) 
 		{ 
 			if ((myPosX + UNIT < this.getStage().getWidth()) && (board[myPosY/UNIT][myPosX/UNIT + 1] != 1)) {
-				checkForTrapResult = checkForTraps(Key.RIGHT);
 				myPosX += UNIT;
 				board[myPosY/UNIT][myPosX/UNIT - 1] = 0;
-				if (board[myPosY/UNIT][myPosX/UNIT] == 4) {
-					finished = true;
-					getStage().setBackground(myColor);
-					message = "You beat Aubrey's Maze!";
-				}
-				if (board[myPosY/UNIT][myPosX/UNIT] == 3 && checkForTrapResult == true) {
-					message = "Trap Activated! Press any key to continue...";
-					trapActivated = true;
-				}
+				checkIfOnTrap(Key.RIGHT);
+				checkFinished();
 				board[myPosY/UNIT][myPosX/UNIT] = 2;
 			}
 		}
-		else if (k == Key.DOWN ) 
+		else if (k == Key.DOWN && !finished) 
 		{ 
 			if ((myPosY + UNIT < this.getStage().getHeight()) && (board[myPosY/UNIT + 1][myPosX/UNIT] != 1)) {
-				checkForTrapResult = checkForTraps(Key.DOWN);
 				myPosY += UNIT;
 				board[myPosY/UNIT - 1][myPosX/UNIT] = 0;
-				if (board[myPosY/UNIT][myPosX/UNIT] == 4) {
-					finished = true;
-					getStage().setBackground(myColor);
-					message = "You beat Aubrey's Maze!";
-				}
-				if (board[myPosY/UNIT][myPosX/UNIT] == 3 && checkForTrapResult == true) {
-					message = "Trap Activated! Press any key to continue...";
-					trapActivated = true;
-				}
+				checkIfOnTrap(Key.DOWN);
+				checkFinished();
 				board[myPosY/UNIT][myPosX/UNIT] = 2;
 			}
 		}
-		else if (k == Key.UP) 
+		else if (k == Key.UP && !finished) 
 		{ 
 			if ((myPosY - UNIT >= 0) && (board[myPosY/UNIT - 1][myPosX/UNIT] != 1)) {
-				checkForTrapResult = checkForTraps(Key.UP);
 				myPosY -= UNIT;
 				board[myPosY/UNIT + 1][myPosX/UNIT] = 0;
-				if (board[myPosY/UNIT][myPosX/UNIT] == 4) {
-					finished = true;
-					getStage().setBackground(myColor);
-					message = "You beat Aubrey's Maze!";
-				}
-				if (board[myPosY/UNIT][myPosX/UNIT] == 3 && checkForTrapResult == true) {
-					message = "Trap Activated! Press any key to continue...";
-					trapActivated = true;
-				}
+				checkIfOnTrap(Key.UP);
+				checkFinished();
 				board[myPosY/UNIT][myPosX/UNIT] = 2;
 			}
 		}
 		printBoard();
+	}
+
+	private void checkFinished() {
+		if (board[myPosY/UNIT][myPosX/UNIT] == 4) {
+			getStage().setBackground(myColor);
+			message = "You beat Aubrey's Maze!";
+			finished = true;
+		}
+	}
+
+	private void checkIfOnTrap(Key k) {
+		boolean checkForTrapResult = checkForTraps(k);
+		if (board[myPosY/UNIT][myPosX/UNIT] == 3 && checkForTrapResult == true) {
+			message = "Trap Activated! Press any key to continue...";
+			trapActivated = true;
+		}
 	}
 
 	private boolean checkForTraps(Key k) {
