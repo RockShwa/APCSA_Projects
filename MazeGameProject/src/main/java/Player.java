@@ -244,20 +244,20 @@ public class Player extends MazeObject
 		int minimumDistance = Integer.MAX_VALUE;
 		for (int r = 0; r < 20; r++) {
 			for (int c = 0; c < 20; c++) {
-				if (board[c][r] == 3) {
+				if (board[r][c] == 3) {
 					// and x and y components to find absolute distance
 					if (k == Key.LEFT) { // Move left, so y doesn't change
-						absoluteDistance = Math.abs((myPosX/UNIT - 1) - r) + Math.abs(myPosY/UNIT - c);
+						absoluteDistance = Math.abs((myPosX/UNIT - 1) - c) + Math.abs(myPosY/UNIT - r);
 					}
 					else if (k == Key.RIGHT) { // Move right, so y doesn't change
 					System.out.println(myPosX);
-						absoluteDistance = Math.abs((myPosX/UNIT + 1) - c) + Math.abs(myPosY/UNIT - c);
+						absoluteDistance = Math.abs((myPosX/UNIT + 1) - c) + Math.abs(myPosY/UNIT - r);
 					}
 					else if (k == Key.DOWN) { // Move down, so x doesn't change
-						absoluteDistance = Math.abs(myPosX/UNIT - c) + Math.abs((myPosY/UNIT + 1) - c);
+						absoluteDistance = Math.abs(myPosX/UNIT - c) + Math.abs((myPosY/UNIT + 1) - r);
 					}
 					else if (k == Key.UP) { // Move up, so y doesn't change
-						absoluteDistance = Math.abs(myPosX/UNIT - c) + Math.abs((myPosY/UNIT - 1) - c);
+						absoluteDistance = Math.abs(myPosX/UNIT - c) + Math.abs((myPosY/UNIT - 1) - r);
 					}
 					if (absoluteDistance < minimumDistance) {
 						minimumDistance = absoluteDistance;
