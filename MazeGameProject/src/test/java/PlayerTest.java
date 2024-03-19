@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.*;
+import mickel.io.Key;
 
-import javafx.scene.paint.Color;
+import java.awt.Color;
 
 import static org.junit.jupiter.api.Assertions.*;
 public class PlayerTest {
@@ -16,12 +17,21 @@ public class PlayerTest {
         // 5) Calls checkFinish()
         // 6) It lastly sets the player's new position to a 2
     @Test
-    public void testTrapActivationReset() {
+    public void testPlayerCanMoveLeftIfNoWall() {
         int UNIT = 40;
-        Color playerColor = new Color(102,51,153,255);
-        Player player = new Player(19 * UNIT, 8 * UNIT, UNIT, playerColor);
-        assertTrue(myPosX == startX);
-        assertTrue(myPosY == startY);
+        Player player = new Player(19 * UNIT, 8 * UNIT, UNIT, Color.WHITE);
+        player.keyPressed(Key.LEFT);
+        Player expected = new Player(18 * UNIT, 8 * UNIT, UNIT, Color.WHITE);
+        assertEquals(player, expected);
     }
 
+    @Test
+    public void testPlayerCannotMoveIfRunsIntoWall() {
+        int UNIT = 40;
+        Player player = new Player(19 * UNIT, 8 * UNIT, UNIT, Color.WHITE);
+        Wall wall = new Wall(19 * UNIT, 7 * UNIT, UNIT, Color.BLUE);
+        player.keyPressed(Key.UP);
+        Player expected = new Player(19 * UNIT, 8 * UNIT, UNIT, Color.WHITE);
+        assertEquals(player, expected);    
+    }
 }

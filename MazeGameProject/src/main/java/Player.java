@@ -151,6 +151,8 @@ public class Player extends MazeObject
 
 	public void keyPressed(Key k) 
 	{
+		// TODO: Make a Board Class that had has Objects (& a 2D Array), to check a wall you could make
+		// a method isWall and pass it a coordinate, and returns if there is a wall there
 		if (trapActivated == true) {
 			board[myPosX/UNIT][myPosY/UNIT] = 0;
 			myPosX = startX;
@@ -217,6 +219,24 @@ public class Player extends MazeObject
 		}
 	}
 
+	@Override
+	public boolean equals(Object otherObj) {
+		if (this == otherObj)
+			return true; 
+		if (otherObj == null || getClass() != otherObj.getClass()) {return false;}
+		Player otherPlayer = (Player) otherObj;
+		if (
+			myPosX == otherPlayer.myPosX && 
+			myPosY == otherPlayer.myPosY && 
+			mySize == otherPlayer.mySize && 
+			myColor == otherPlayer.myColor && 
+			finished == otherPlayer.finished &&
+			trapActivated == otherPlayer.trapActivated) {
+			return true;
+		}
+		return false;
+	}
+
 	private boolean checkForTraps(Key k) {
 		// TODO: distances weird, recalculate
 		// TODO: Two walls pop up when I restart after hitting a trap, why?
@@ -231,9 +251,6 @@ public class Player extends MazeObject
 					}
 					else if (k == Key.RIGHT) { // Move right, so y doesn't change
 					System.out.println(myPosX);
-						System.out.println(myPosY);
-						System.out.println((myPosX/UNIT - 1) - c);
-						System.out.println(myPosY/UNIT - c);
 						absoluteDistance = Math.abs((myPosX/UNIT + 1) - c) + Math.abs(myPosY/UNIT - c);
 					}
 					else if (k == Key.DOWN) { // Move down, so x doesn't change
