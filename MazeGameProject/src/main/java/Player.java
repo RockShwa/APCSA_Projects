@@ -238,9 +238,9 @@ public class Player extends MazeObject
 	}
 
 	private boolean checkForTraps(Key k) {
-		// TODO: the comparison with which trap is closest is wrong
 		int absoluteDistance = 0;
 		int minimumDistance = Integer.MAX_VALUE;
+		boolean isTrap = false;
 		for (int r = 0; r < 20; r++) {
 			for (int c = 0; c < 20; c++) {
 				if (board[r][c] == 3) { // should these be switched?
@@ -250,17 +250,17 @@ public class Player extends MazeObject
 					if (absoluteDistance < minimumDistance) {
 						minimumDistance = absoluteDistance;
 					}
-					if (minimumDistance == Integer.MAX_VALUE) {
-						message = "";
-					}
-					message = "The nearest trap is " + minimumDistance + " spaces away!";
-					return true;
+					isTrap = true;
 				}
 			}
 		}
 		// Put this here to reset message once all traps are gone
 		// message = "";
-		return false;
+		message = "The nearest trap is " + minimumDistance + " spaces away!";
+		if (minimumDistance == Integer.MAX_VALUE) {
+			message = "";
+		}
+		return isTrap;
 	}
 
 	
