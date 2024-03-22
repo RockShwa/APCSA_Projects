@@ -153,13 +153,6 @@ public class Player extends MazeObject
 	{
 		// TODO: Make a Board Class that had has Objects (& a 2D Array), to check a wall you could make
 		// a method isWall and pass it a coordinate, and returns if there is a wall there
-		if (trapActivated == true) {
-			board[myPosX/UNIT][myPosY/UNIT] = 0;
-			myPosX = startX;
-			myPosY = startY;
-			board[myPosX/UNIT][myPosY/UNIT] = 2;
-			trapActivated = false;
-		}
 		if (k == Key.LEFT && !finished) 
 		{
 			if ((myPosX - UNIT >= 0) && (board[myPosY/UNIT][myPosX/UNIT - 1] != 1)) {
@@ -200,6 +193,13 @@ public class Player extends MazeObject
 				board[myPosY/UNIT][myPosX/UNIT] = 2;
 			}
 		}
+		if (trapActivated == true) {
+			board[myPosX/UNIT][myPosY/UNIT] = 0;
+			myPosX = startX;
+			myPosY = startY;
+			board[myPosX/UNIT][myPosY/UNIT] = 2;
+			trapActivated = false;
+		}
 		printBoard();
 	}
 
@@ -212,7 +212,7 @@ public class Player extends MazeObject
 	}
 
 	private void checkIfOnTrap(Key k) {
-		boolean checkForTrapResult = checkForTraps(k);
+		boolean checkForTrapResult = checkForTraps();
 		if (board[myPosY/UNIT][myPosX/UNIT] == 3 && checkForTrapResult == true) {
 			message = "Trap Activated! Press any key to continue...";
 			trapActivated = true;
@@ -237,7 +237,13 @@ public class Player extends MazeObject
 		return false;
 	}
 
-	private boolean checkForTraps(Key k) {
+	@Override
+	public String toString() {
+		String finalString = "myPosX (index) = " + myPosX/UNIT + "; myPosY (index) = " + myPosY/UNIT;
+		return finalString;
+	}
+
+	public boolean checkForTraps() {
 		int absoluteDistance = 0;
 		int minimumDistance = Integer.MAX_VALUE;
 		boolean isTrap = false;
