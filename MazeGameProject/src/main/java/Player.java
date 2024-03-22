@@ -243,7 +243,7 @@ public class Player extends MazeObject
 		boolean isTrap = false;
 		for (int r = 0; r < 20; r++) {
 			for (int c = 0; c < 20; c++) {
-				if (board[r][c] == 3) { // should these be switched?
+				if (board[r][c] == 3) { 
 					absoluteDistance = Math.abs((myPosX/UNIT) - c) + Math.abs(myPosY/UNIT - r);
 					System.out.println(absoluteDistance);
 				
@@ -254,8 +254,6 @@ public class Player extends MazeObject
 				}
 			}
 		}
-		// Put this here to reset message once all traps are gone
-		// message = "";
 		message = "The nearest trap is " + minimumDistance + " spaces away!";
 		if (minimumDistance == Integer.MAX_VALUE) {
 			message = "";
