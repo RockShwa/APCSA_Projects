@@ -20,10 +20,6 @@ How to Make a Bin Folder:
     - javac -d bin -cp lib src/*.java
     - java -cp "bin;lib" BouncingBalls
 
-# How to Push at School Computer
-- git remote set-url origin https://RockShwa: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@github.com/RockShwa/APCSA_Projects
-- git push origin main
-
 # Pulling
 - Anytime I make a change on multiple computers to the same repo I need to use git pull to pull the changes onto my local repo
 - git pull
